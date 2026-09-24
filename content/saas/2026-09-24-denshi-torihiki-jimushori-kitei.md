@@ -6,7 +6,7 @@ description: "電子帳簿保存法の電子取引データ保存について、
 tags: ["電子帳簿保存法", "法人設立", "会計ソフト"]
 author: "Blue Aegis Guide 編集部"
 pr: true
-draft: true
+draft: false
 sources:
   - type: primary
     publisher: "国税庁"
