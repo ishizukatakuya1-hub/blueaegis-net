@@ -53,6 +53,14 @@
       "asp": "A8.net（お名前.com プレミアムドメイン、2026-09-24 提携承認）",
       "url": "https://px.a8.net/svt/ejp?a8mat=4BCIRS+CONHRM+50+3SZMKY",
       "active": true
+    },
+    {
+      "id": "onamae",
+      "category": "saas",
+      "label": "お名前.comの公式サイト",
+      "asp": "A8.net（お名前.com、2026-09-24。a8mat先頭が他と異なる点はユーザー確認済み）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BCIRR+F171O2+50+2HHVNM",
+      "active": true
     }
   ]
 }
