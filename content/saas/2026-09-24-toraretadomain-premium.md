@@ -6,7 +6,7 @@ description: "会社名のドメインが第三者に取られていたときの
 tags: ["ドメイン", "法人設立", "商標"]
 author: "Blue Aegis Guide 編集部"
 pr: true
-draft: true
+draft: false
 sources:
   - type: primary
     publisher: "お名前.com"
