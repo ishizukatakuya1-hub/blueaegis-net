@@ -435,3 +435,6 @@ section:has(.masthead){padding-top:clamp(34px,4.4vw,52px)}
 .aff a{font-weight:bold}
 .aff.pending{color:var(--slate)}
 .draftbanner{padding:8px 12px; background:#FFF4CC; color:#5A4500; font-weight:bold}
+.aff.banner{display:block; margin:24px 0}
+.aff.banner img{display:block; max-width:100%; height:auto; margin-top:4px}
+.aff.banner img.pxl{width:1px; height:1px; margin:0}

@@ -26,6 +26,7 @@ Blue Aegis株式会社のアフィリエイトメディア。**詳細の正本�
 - 広告を含む記事は frontmatter に `pr: true`。冒頭の広告表示と、リンク直前の「PR」は build.js が自動で入れる。
 - 検査（`tools/lib/audit.js` の `auditAffiliate`）が、sponsored リンクがあるのに広告表示や PR 表記がない出力を止める。
 - 報酬の有無で順位・評価を変えない（`content/pages/ad-policy.md` で公約している）。
+- バナー（`type: "banner"`）と計測画像は、ページ表示の時点で提携先へ通信が発生する。追加・変更したら `content/pages/privacy.md` の「広告バナーと計測画像」の節（送信先・掲載記事）も直すこと。
 
 ## 公開の流れ
 

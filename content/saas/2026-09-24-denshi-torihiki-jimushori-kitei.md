@@ -87,6 +87,8 @@ JIIMA（日本文書情報マネジメント協会）の認証は、ソフトウ
 
 {{aff:freee-accounting}}
 
+{{aff:freee-accounting-banner}}
+
 ## まとめ
 
 - メールやWebで受け取った請求書等は、電子のまま保存する。

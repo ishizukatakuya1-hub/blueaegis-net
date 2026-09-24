@@ -50,6 +50,11 @@ function checkLinks(file, fm, body, catalog, fail, warn) {
     if (!p) { report(file, `data/affiliates.json に案件 "${id}" がありません`); continue; }
     if (!p.url) report(file, `案件 "${id}" の url が未設定です（ASP登録後に記入）`);
     else if (!/^https:\/\//.test(p.url)) fail(file, `案件 "${id}" の url は https で始めること`);
+    if (p.type === 'banner') {
+      if (!/^https:\/\//.test(p.image || '')) fail(file, `バナー "${id}" の image は https で始めること`);
+      if (!(p.width > 0 && p.height > 0)) fail(file, `バナー "${id}" に width / height がありません`);
+      if (p.pixel && !/^https:\/\//.test(p.pixel)) fail(file, `バナー "${id}" の pixel は https で始めること`);
+    }
     if (p.active === false) report(file, `案件 "${id}" は提携終了（active: false）です`);
   }
 }
@@ -60,6 +65,13 @@ function expand(html, catalog) {
     const p = catalog.get(id);
     if (!p || !p.url || p.active === false) {
       return `<span class="aff pending">${esc(p ? p.label : id)}（リンク準備中）</span>`;
+    }
+    /* バナーは画像の読み込み時点で提携先へ通信が発生する。プライバシーポリシーの
+       「広告バナーと計測画像」の節と対応しているので、type: banner を増やすときは向こうも確認すること */
+    if (p.type === 'banner') {
+      const pixel = p.pixel ? `<img class="pxl" src="${esc(p.pixel)}" width="1" height="1" alt="">` : '';
+      return `<span class="aff banner"><span class="prmark">PR</span><a href="${esc(p.url)}" rel="sponsored noopener" target="_blank">`
+        + `<img src="${esc(p.image)}" width="${Number(p.width)}" height="${Number(p.height)}" alt="${esc(p.label)}" loading="lazy"></a>${pixel}</span>`;
     }
     return `<span class="aff"><span class="prmark">PR</span><a href="${esc(p.url)}" rel="sponsored noopener" target="_blank">${esc(p.label)}</a></span>`;
   });
