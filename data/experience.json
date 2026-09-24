@@ -6,6 +6,18 @@
       "category": "saas",
       "fact": "Blue Aegis株式会社が、電子取引データの訂正及び削除の防止に関する事務処理規程を制定した（取締役決定による）",
       "record": "取締役決定書（電子取引事務処理規程制定、2026-09-18）"
+    },
+    {
+      "date": "2026-08-12",
+      "category": "saas",
+      "fact": "Blue Aegis株式会社が、.co.jp・.jp・.net の3つのドメインを同じ日にXserverドメインで申し込んだ（.comは第三者が取得済みだったため見送り）。レジストラは取得と更新が同額で維持調整費がない点を理由に選んだ",
+      "record": "ドメイン申込情報パッケージ（2026-08-12）"
+    },
+    {
+      "date": "2026-08-12",
+      "category": "saas",
+      "fact": "blueaegis.co.jp がJPRSに登録された（WHOISの登録年月日 2026/08/12、Organization は Blue Aegis Inc. と公開表示）",
+      "record": "JPRS WHOIS 照会結果（2026-09-24 確認）"
     }
   ]
 }

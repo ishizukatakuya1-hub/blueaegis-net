@@ -45,6 +45,14 @@
       "asp": "未定",
       "url": "",
       "active": true
+    },
+    {
+      "id": "onamae-premium",
+      "category": "saas",
+      "label": "お名前.com プレミアムドメインの公式ページ",
+      "asp": "A8.net（お名前.com プレミアムドメイン、2026-09-24 提携承認）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BCIRS+CONHRM+50+3SZMKY",
+      "active": true
     }
   ]
 }
