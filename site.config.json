@@ -1,0 +1,30 @@
+{
+  "base": "https://blueaegis.net",
+  "siteName": "Blue Aegis Guide",
+  "siteNameNote": "媒体名は仮。確定したらここだけ直す（title接尾辞・OGP・RSS・構造化データに反映される）",
+  "shortTagline": "小さな法人の実務サービス比較",
+  "tagline": "法人の実務で使うサービスを、一次資料と実際の手続きに当たって比べるガイド",
+  "operator": {
+    "legalName": "Blue Aegis株式会社",
+    "alternateName": ["ブルーイージス", "Blue Aegis Inc."],
+    "corporateNumber": "2010401200286",
+    "corporateSite": "https://blueaegis.co.jp/",
+    "email": "info@blueaegis.co.jp"
+  },
+  "author": "Blue Aegis Guide 編集部",
+  "analyticsToken": "",
+  "categories": {
+    "saas": {
+      "name": "バックオフィスSaaS",
+      "desc": "会計・電子契約・電子帳簿保存法対応など、小さな法人のバックオフィスで使うサービスを、実際の手続きと公式資料に当たって比べています。"
+    },
+    "ip": {
+      "name": "知財・商標サービス",
+      "desc": "商標出願や権利管理のオンラインサービスを、手続きの流れと公式の料金表に当たって比べています。"
+    },
+    "ai": {
+      "name": "AI・業務ツール",
+      "desc": "中小企業の業務で使うAIツールや業務アプリを、公式の仕様と利用規約に当たって比べています。"
+    }
+  }
+}

@@ -1,0 +1,437 @@
+:root{
+  --navy:#0A2A4F; --blue:#1E5FA8; --cyan:#4FB3D9;
+  --slate:#6B7684; --rule:#C7D0DA; --paper:#F7F9FB; --white:#FFFFFF;
+  --ink:#43536A;
+  --maxw:1040px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--white); color:var(--navy);
+  font-family:"Yu Gothic","游ゴシック","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  font-size:16px; line-height:1.9; letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(18px,4vw,24px)}
+
+/* ---- ヘッダー ---- */
+header{
+  z-index:10;
+  background:rgba(255,255,255,.94); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+/* ロゴとナビが1行に収まる幅でのみ固定する */
+@media(min-width:880px){ header{position:sticky; top:0} }
+.headbar{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px clamp(16px,2.5vw,24px); min-height:92px; padding:14px clamp(18px,4vw,24px)}
+.headbar svg{display:block; height:clamp(36px,4.8vw,58px); width:auto; max-width:100%}
+nav{display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end; gap:0 clamp(14px,1.9vw,24px)}
+nav a{color:var(--slate); text-decoration:none; font-size:clamp(13px,1.15vw,14px); letter-spacing:.06em; white-space:nowrap; padding:9px 0}
+nav a:hover{color:var(--blue)}
+nav a.lang{
+  border:1px solid var(--rule); border-radius:2px;
+  padding:10px 14px; font-size:12.5px; letter-spacing:.1em;
+}
+nav a.lang:hover{border-color:var(--blue)}
+a:focus-visible{outline:2px solid var(--cyan); outline-offset:3px}
+
+/* ---- ヒーロー ---- */
+.hero{background:var(--navy); color:var(--white); padding:clamp(58px,8.5vw,96px) 0 clamp(54px,7.5vw,88px)}
+/* 高さだけを指定すると、極端に狭い画面（280px級の折りたたみ端末）で横に溢れる。
+   max-width で頭を押さえる。縦横比は保たれる */
+.hero svg{display:block; height:clamp(88px,13vw,156px); width:auto; max-width:100%; margin-bottom:52px}
+.hero h1{margin:0 0 26px; font-size:clamp(26px,4.4vw,42px); font-weight:600; line-height:1.55; letter-spacing:.04em; text-wrap:balance}
+.hero p{margin:0; max-width:44em; color:#C3D2E0; font-size:clamp(15px,1.7vw,17px)}
+.tagline-en{margin-top:34px; color:var(--cyan); font-size:13px; letter-spacing:.22em}
+
+/* ---- セクション ---- */
+section{padding:clamp(54px,7vw,84px) 0; border-top:1px solid var(--rule)}
+/* 一覧ページでは、大きい行（.lead）を h1 にし、上の小さい英字は見出しにしない。
+   見出しの階層を正しく保ちつつ、見た目は変えないための .eyebrow */
+h2,.eyebrow{margin:0 0 12px; font-size:13px; font-weight:600; letter-spacing:.24em; color:var(--blue)}
+.lead{margin:0 0 20px; font-size:clamp(20px,2.6vw,27px); font-weight:600; line-height:1.6; text-wrap:balance}
+.intro{margin:0 0 48px; max-width:46em; color:var(--ink); font-size:15px}
+.lead + .cards, .lead + .domains, .lead + .cards3{margin-top:48px}
+
+/* ---- Blue Aegis Media の題字 ----
+   ブログ（/blog/）でだけ使う派生ロゴ。英字を並べていた場所にそのまま置き、
+   高さだけを幅に連動させる（切り替え点を増やさない）。
+   規制解説（/insights/）の .kicker は英字のままなので、指定は .medialogo に限る。
+   lg=一覧・タグの題字／sm=記事の冠。 */
+.masthead{margin:0 0 8px}
+.medialogo{display:block; width:auto; max-width:100%}
+.medialogo.lg{height:clamp(46px,6.4vw,64px)}
+/* sm の下限 39px は、ガイドラインの最小使用サイズ（ロゴタイプ併記 90px 幅）から逆算した値。
+   viewBox 380 のうち字面は 304 までなので、幅 114px でちょうど 90px の字面になる。 */
+.medialogo.sm{height:clamp(39px,5.2vw,44px)}
+
+/* ---- メッセージ ---- */
+.message{border-top:0}
+.message .lead{font-size:clamp(23px,3.3vw,35px); line-height:1.5; margin-bottom:36px}
+.message p{margin:0 0 22px; max-width:38em; font-size:15.5px; color:var(--ink); line-height:2}
+.message p:last-of-type{margin-bottom:0}
+.message .pull{
+  margin:42px 0 0; padding:0 0 0 22px; border-left:3px solid var(--cyan);
+  font-size:clamp(17px,2.2vw,22px); font-weight:600; color:var(--navy);
+  line-height:1.65; max-width:26em;
+}
+
+/* 段組みの最小幅は min(...,100%) で包む。
+   包まないと、画面が最小幅より狭いときに段が縮まず横スクロールが出る（320pxで発生していた）。 */
+/* ---- 事業内容 ---- */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(268px,100%),1fr)); gap:34px}
+.card{border-top:3px solid var(--blue); padding-top:22px}
+.card:nth-child(2){border-color:var(--cyan)}
+.card:nth-child(3){border-color:var(--slate)}
+.card h3{margin:0 0 12px; font-size:17px; font-weight:600; line-height:1.6}
+.card p{margin:0; font-size:14.5px; color:var(--ink)}
+
+/* ---- 技術領域 ---- */
+.domains{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:2px; background:var(--rule); border:1px solid var(--rule)}
+.domain{background:var(--white); padding:26px 24px}
+.domain h3{margin:0 0 8px; font-size:15.5px; font-weight:600}
+.domain p{margin:0; font-size:14px; color:var(--ink); line-height:1.8}
+
+/* ---- ポートフォリオ ---- */
+.portfolio{background:var(--paper)}
+.stat{display:flex; align-items:baseline; gap:14px; margin:0 0 8px}
+.stat b{font-size:clamp(46px,8vw,76px); font-weight:600; line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:var(--blue)}
+.stat span{font-size:16px; font-weight:600}
+.stat-note{margin:0 0 40px; font-size:13px; color:var(--slate)}
+.pol{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr)); gap:32px}
+.pol h3{margin:0 0 10px; font-size:15.5px; font-weight:600}
+.pol p{margin:0; font-size:14.5px; color:var(--ink)}
+
+/* ---- ライセンス ---- */
+.cards3{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr)); gap:32px; margin-bottom:64px}
+.offer{border:1px solid var(--rule); padding:26px 24px}
+.offer h3{margin:0 0 10px; font-size:16px; font-weight:600}
+.offer p{margin:0; font-size:14.5px; color:var(--ink)}
+.steps{list-style:none; counter-reset:s; margin:0 0 64px; padding:0; display:grid; gap:26px}
+.steps li{counter-increment:s; display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:start}
+.steps li::before{
+  content:counter(s,decimal-leading-zero);
+  font-size:13px; font-weight:600; letter-spacing:.1em; color:var(--cyan);
+  font-variant-numeric:tabular-nums; padding-top:3px;
+}
+.steps h3{margin:0 0 6px; font-size:15.5px; font-weight:600}
+.steps p{margin:0; font-size:14.5px; color:var(--ink)}
+.faq{margin:0}
+.faq dt{font-size:15px; font-weight:600; margin-top:28px; padding-top:22px; border-top:1px solid var(--rule)}
+.faq dd{margin:8px 0 0; font-size:14.5px; color:var(--ink)}
+
+/* ---- 考え方 ---- */
+.creed{background:var(--navy); color:var(--white)}
+.creed h2{color:var(--cyan)}
+.creed blockquote{margin:0 0 26px; padding:0 0 0 22px; border-left:3px solid var(--cyan); font-size:clamp(19px,2.5vw,25px); font-weight:600; line-height:1.65}
+.creed p{margin:0; max-width:48em; font-size:15px; color:#C3D2E0}
+
+/* ---- 会社概要 ---- */
+table{border-collapse:collapse; width:100%; font-size:14.5px}
+th,td{text-align:left; vertical-align:top; padding:15px 0; border-bottom:1px solid var(--rule)}
+th{width:11em; font-weight:600; color:var(--slate); font-size:13.5px; letter-spacing:.06em}
+td ol{margin:0; padding-left:1.3em}
+td ol li{margin-bottom:4px}
+.scroller{overflow-x:auto}
+
+/* ---- 問い合わせ ---- */
+.contact{background:var(--paper)}
+.form{display:grid; gap:28px; max-width:44em; margin:0 0 34px}
+.field > span{display:block; font-size:13px; font-weight:600; letter-spacing:.08em; color:var(--slate); margin-bottom:12px}
+.opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr)); gap:10px}
+.opt{position:relative}
+.opt input{position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer}
+.opt span{
+  display:block; padding:13px 16px; background:var(--white);
+  border:1px solid var(--rule); font-size:14.5px; line-height:1.5; color:var(--ink);
+  transition:border-color .15s, color .15s, box-shadow .15s;
+}
+.opt input:checked + span{border-color:var(--blue); color:var(--navy); box-shadow:inset 0 0 0 1px var(--blue)}
+.opt input:focus-visible + span{outline:2px solid var(--cyan); outline-offset:2px}
+.field textarea, .field input[type=text]{
+  width:100%; padding:13px 16px; background:var(--white);
+  border:1px solid var(--rule); font:inherit; font-size:15px; color:var(--navy);
+}
+.field textarea{min-height:120px; resize:vertical; line-height:1.8}
+.field textarea:focus, .field input[type=text]:focus{outline:2px solid var(--cyan); outline-offset:0; border-color:var(--blue)}
+.send{
+  display:inline-block; padding:16px 34px; background:var(--navy); color:var(--white);
+  border:0; font:inherit; font-size:15.5px; font-weight:600; letter-spacing:.06em;
+  cursor:pointer; transition:background .15s;
+}
+.send:hover{background:var(--blue)}
+.send:focus-visible{outline:2px solid var(--cyan); outline-offset:3px}
+.note{margin:18px 0 0; font-size:13px; color:var(--slate); line-height:1.85; max-width:40em}
+.fallback{margin:30px 0 0; padding-top:26px; border-top:1px solid var(--rule); font-size:14px; color:var(--ink)}
+.mail{display:inline-block; margin-top:14px; padding-top:4px; font-size:clamp(17px,2.4vw,22px); color:var(--navy); text-decoration:none; border-bottom:2px solid var(--cyan); padding-bottom:6px; letter-spacing:.03em}
+.mail:hover{color:var(--blue)}
+
+/* ---- 相談ナビ（問い合わせ欄の会話式の案内） ----
+   選択肢を押して進み、最後に下のフォームへ内容を流し込む。外部サービスを介さないので、
+   選んだ内容はこのページから出ない。台本は各HTMLの application/json に置いてある。
+   スクリプトが動かない環境では出さない（フォームだけで完結するため）。 */
+.bot{display:none}
+.js .bot{
+  display:block; max-width:44em; margin:0 0 44px;
+  border:1px solid var(--rule); background:var(--paper);
+}
+.bot-head{
+  margin:0; padding:15px clamp(16px,3vw,22px);
+  border-bottom:1px solid var(--rule);
+  font-size:13px; font-weight:600; letter-spacing:.14em; color:var(--blue);
+}
+.bot-head span{
+  display:block; margin-top:7px;
+  font-size:12.5px; font-weight:400; letter-spacing:.02em; line-height:1.8; color:var(--slate);
+}
+.bot-log{display:grid; gap:14px; padding:clamp(16px,3vw,22px)}
+.bot-log p{margin:0; max-width:33em; padding:13px 17px; font-size:14.5px; line-height:1.85}
+.bot-log .says{justify-self:start; background:var(--white); border:1px solid var(--rule); border-left:3px solid var(--cyan); color:var(--navy)}
+.bot-log .picked{justify-self:end; background:var(--navy); color:var(--white)}
+.bot-opts{display:grid; gap:10px; padding:0 clamp(16px,3vw,22px) clamp(16px,3vw,22px)}
+.bot-opts:empty{display:none}
+.bot-opts button{
+  display:block; width:100%; min-height:46px; padding:12px 18px;
+  border:1px solid var(--rule); background:var(--white); color:var(--navy);
+  font:inherit; font-size:14.5px; line-height:1.7; text-align:left; cursor:pointer;
+  transition:border-color .15s, color .15s;
+}
+.bot-opts button:hover{border-color:var(--blue); color:var(--blue)}
+.bot-opts button:focus-visible{outline:2px solid var(--cyan); outline-offset:2px}
+.bot-opts .bot-go{
+  background:var(--navy); color:var(--white); border-color:var(--navy);
+  font-weight:600; letter-spacing:.06em;
+}
+.bot-opts .bot-go:hover{background:var(--blue); border-color:var(--blue); color:var(--white)}
+/* 単独で押す導線。行の高さだけでは44pxに届かないので padding で足す */
+.bot-foot{padding:0 clamp(16px,3vw,22px) 6px}
+.bot-restart{
+  padding:10px 2px; border:0; background:none; color:var(--slate);
+  font:inherit; font-size:13px; text-decoration:underline; text-underline-offset:4px; cursor:pointer;
+}
+.bot-restart:hover{color:var(--blue)}
+.bot-restart:focus-visible{outline:2px solid var(--cyan); outline-offset:2px}
+
+/* ---- フッター ---- */
+footer{background:var(--navy); color:#7E93AC; font-size:12.5px; padding:30px 0 40px}
+footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+footer a{color:#7E93AC}
+footer .legal{display:flex; gap:20px; flex-wrap:wrap}
+footer .legal a{text-decoration:none; border-bottom:1px solid transparent}
+footer .legal a:hover{color:#B9C8D6; border-bottom-color:#4A5F73}
+
+/* ---- 動きの演出 ----
+   すべて prefers-reduced-motion: no-preference の中だけで定義する。
+   動きを望まない利用者には初期状態そのものを与えない（要素が消えたままになる事故を防ぐ）。
+   .js が付くのはスクリプトが動く場合だけなので、JS無効時も内容は常に見える。 */
+@media(prefers-reduced-motion:no-preference){
+  /* スクロール連動フェードイン */
+  .js section .lead, .js section .intro, .js .card, .js .domain, .js .offer,
+  .js .steps > li, .js .pol > div, .js .stat, .js .stat-note,
+  .js .faq dt, .js .faq dd, .js .scroller,
+  .js .message p, .js .message .pull,
+  .js .creed blockquote, .js .creed p, .js .mail, .js .bot{
+    opacity:0; transform:translateY(20px);
+    transition:opacity .75s cubic-bezier(.2,.7,.3,1), transform .75s cubic-bezier(.2,.7,.3,1);
+  }
+  .js .in{opacity:1 !important; transform:none !important}
+  .js .card:nth-child(2), .js .domain:nth-child(2), .js .offer:nth-child(2), .js .pol > div:nth-child(2){transition-delay:.09s}
+  .js .card:nth-child(3), .js .domain:nth-child(3), .js .offer:nth-child(3), .js .pol > div:nth-child(3){transition-delay:.18s}
+  .js .domain:nth-child(4){transition-delay:.27s}
+  .js .domain:nth-child(5){transition-delay:.36s}
+  .js .domain:nth-child(6){transition-delay:.45s}
+  .js .steps > li:nth-child(2){transition-delay:.09s}
+  .js .steps > li:nth-child(3){transition-delay:.18s}
+  .js .steps > li:nth-child(4){transition-delay:.27s}
+
+  /* ロゴの起動：積層の盾が下から順に積み上がる */
+  .js .hero .band{opacity:0; animation:band .5s cubic-bezier(.2,.7,.3,1) forwards}
+  .js .hero .b5{animation-delay:.10s}
+  .js .hero .b4{animation-delay:.21s}
+  .js .hero .b3{animation-delay:.32s}
+  .js .hero .b2{animation-delay:.43s}
+  .js .hero .b1{animation-delay:.54s}
+  .js .hero .wm{opacity:0; animation:wm .6s ease .70s forwards}
+  .js .hero h1, .js .hero > .wrap > p, .js .tagline-en{opacity:0; animation:wm .7s ease forwards}
+  .js .hero h1{animation-delay:.95s}
+  .js .hero > .wrap > p{animation-delay:1.10s}
+  .js .tagline-en{animation-delay:1.25s}
+  @keyframes band{from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none}}
+  @keyframes wm{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+}
+
+/* 幅に応じた連続的な調整で足りない、構造そのものを変える必要がある箇所だけを切り替える */
+
+/* ナビが2行以上に折り返す幅では、ロゴの下に左揃えで置く */
+@media(max-width:880px){
+  .headbar{flex-direction:column; align-items:flex-start}
+  nav{justify-content:flex-start}
+}
+
+/* 表は2列だと内容側が細くなりすぎるため、項目名と内容を縦に積む */
+@media(max-width:760px){
+  table, tbody, tr, th, td{display:block; width:auto}
+  th{width:auto; padding:20px 0 4px; border-bottom:0}
+  td{padding:0 0 20px; border-bottom:1px solid var(--rule)}
+}
+
+/* 連番と本文を横に並べる余地がなくなる幅で縦積みにする */
+@media(max-width:600px){
+  .steps li{grid-template-columns:1fr; gap:4px}
+}
+
+/* ================= 英語版の差分 =================
+   本体は日本語版を基準にし、欧文組版で調整が要る箇所だけをここで上書きする。
+   ページを増やしてもCSSは1つに保つ。 */
+html[lang="en"] body{
+  font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.8; letter-spacing:.01em;
+}
+html[lang="en"] nav a{letter-spacing:.04em}
+html[lang="en"] .hero h1{font-size:clamp(28px,4.6vw,46px); line-height:1.35; letter-spacing:-.01em}
+html[lang="en"] .hero p{max-width:40em}
+html[lang="en"] .lead{font-size:clamp(21px,2.7vw,29px); line-height:1.4}
+html[lang="en"] .intro{max-width:42em}
+html[lang="en"] .card h3{line-height:1.5}
+html[lang="en"] .domain p{line-height:1.7}
+html[lang="en"] .creed blockquote{font-size:clamp(19px,2.5vw,26px); line-height:1.45}
+html[lang="en"] .creed p{max-width:44em}
+html[lang="en"] .message .lead{font-size:clamp(24px,3.4vw,37px); line-height:1.35}
+html[lang="en"] .message p{max-width:36em; line-height:1.95}
+html[lang="en"] .message .pull{font-size:clamp(17px,2.2vw,23px); line-height:1.5; max-width:24em}
+html[lang="en"] th{letter-spacing:.04em}
+html[lang="en"] .mail{letter-spacing:normal}
+
+/* ================= 解説記事 ================= */
+/* 記事の main は .wrap と併用する（build.js の <main class="wrap article">）。
+   padding の左右を 0 にすると .wrap の左右余白まで打ち消してしまい、
+   本文が 40em に収まらない画面幅＝スマホで、見出しと本文が画面の端に貼り付く。
+   左右にヘッダーと同じ余白を持たせたうえで、max-width にその分を足し戻す。
+   こうすると本文の実寸は 40em のまま変わらない。 */
+.article{
+  max-width:calc(40em + 2 * clamp(18px,4vw,24px));
+  padding:clamp(46px,6vw,72px) clamp(18px,4vw,24px) clamp(54px,7vw,84px);
+}
+.article .kicker{font-size:12.5px; font-weight:600; letter-spacing:.2em; color:var(--blue); margin:0 0 14px}
+.article h1{
+  margin:0 0 20px; font-size:clamp(25px,3.6vw,38px); font-weight:600;
+  line-height:1.45; letter-spacing:.01em;
+  /* balance は全行の長さを揃えるため、3行になる見出しで全行が列幅の7割ほどで
+     止まり、右に余白が残って左に寄って見えた。pretty は最終行だけを整えるので
+     行が列幅まで伸び、パンくずや本文と幅が揃う。 */
+  text-wrap:pretty;
+}
+.article .meta{margin:0 0 44px; font-size:13px; color:var(--slate); letter-spacing:.04em}
+.article h2{
+  margin:52px 0 16px; font-size:clamp(18px,2.2vw,22px); font-weight:600;
+  letter-spacing:.01em; color:var(--navy); line-height:1.55;
+}
+.article p{margin:0 0 22px; font-size:15.5px; line-height:2; color:var(--ink)}
+.article strong{color:var(--navy)}
+.article ul{margin:0 0 22px; padding-left:0; list-style:none}
+.article ul li{
+  position:relative; margin:0 0 14px; padding-left:26px;
+  font-size:15.5px; line-height:1.95; color:var(--ink);
+}
+.article ul li::before{
+  content:""; position:absolute; left:6px; top:.85em;
+  width:7px; height:7px; background:var(--cyan);
+}
+.article blockquote{
+  margin:0 0 26px; padding:20px 24px; background:var(--paper);
+  border-left:3px solid var(--blue); font-size:15px; line-height:1.95; color:var(--navy);
+}
+.article .source{
+  margin:52px 0 0; padding-top:26px; border-top:1px solid var(--rule);
+  font-size:13.5px; line-height:1.9; color:var(--slate); word-break:break-word;
+}
+.article .source a{color:var(--blue)}
+/* 規制解説の購読導線。施行日が先の規制ほど、読んだ時点では動けない。
+   次の改正までつながっていられる経路として記事末尾と一覧に置く。 */
+.subscribe{margin:34px 0 0; padding-top:20px; border-top:1px solid var(--rule);
+           font-size:13.5px; color:var(--slate)}
+.subscribe a{color:var(--blue)}
+.postlist + .subscribe{margin-top:8px}
+
+.article .backlink{margin:27px 0 0; font-size:14px}
+.article .backlink a{display:inline-block; padding:13px 0; color:var(--blue); text-decoration:none}
+.article .backlink a:hover{text-decoration:underline}
+
+/* 記事末尾の相談導線 */
+.cta{margin:56px 0 0; padding:30px 28px; background:var(--navy); color:var(--white)}
+.cta p{margin:0 0 10px; font-size:15px; line-height:1.95; color:#C3D2E0}
+/* 指で押す前提の高さを確保する（約45px）。文章中のリンクではなく単独の導線なので、
+   見た目の余白ではなく当たり判定として padding を持たせる */
+.cta a{
+  display:inline-block; color:var(--white); text-decoration:none;
+  border-bottom:2px solid var(--cyan); padding:8px 0 5px; font-size:16px; font-weight:600;
+}
+.cta a:hover{color:var(--cyan)}
+
+/* 記事一覧 */
+.postlist{list-style:none; margin:0; padding:0; display:grid; gap:0}
+.postlist li{border-top:1px solid var(--rule)}
+.postlist li:last-child{border-bottom:1px solid var(--rule)}
+.postlist a{display:block; padding:28px 0; text-decoration:none; color:inherit}
+.postlist a:hover h3{color:var(--blue)}
+.postlist .date{display:block; font-size:12.5px; letter-spacing:.1em; color:var(--slate); margin-bottom:8px}
+.postlist h3{margin:0 0 8px; font-size:clamp(17px,2.1vw,20px); font-weight:600; line-height:1.55; transition:color .15s}
+.postlist p{margin:0; font-size:14.5px; color:var(--ink); line-height:1.85; max-width:44em}
+
+/* 現在地。ビルド時に記事へ差し込まれる（tools/build.js の crumbsHtml）。
+   フェードインの対象には入れない。読み手が最初に見る位置に、遅れて現れる要素を置かないため。 */
+.article .crumbs{
+  display:flex; flex-wrap:wrap; align-items:center; gap:0 8px;
+  margin:0 0 18px; font-size:12.5px; line-height:1.8; color:var(--slate); letter-spacing:.04em;
+}
+.article .crumbs a{color:var(--slate); text-decoration:none; border-bottom:1px solid transparent}
+.article .crumbs a:hover{color:var(--blue); border-bottom-color:var(--blue)}
+.article .crumbs .sep{color:var(--rule)}
+.article .crumbs [aria-current]{
+  min-width:0; flex:0 1 auto; color:var(--ink);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+/* 記事の下の関連記事。こちらもビルド時に差し込まれる */
+.article .related{margin:52px 0 0; padding-top:26px; border-top:1px solid var(--rule)}
+.article .related h2{margin:0 0 4px; font-size:12.5px; font-weight:600; letter-spacing:.18em; color:var(--slate)}
+.article .related ul{margin:0; padding:0; list-style:none}
+.article .related ul li{margin:0; padding:0; border-top:1px solid var(--rule)}
+.article .related ul li::before{content:none}
+.article .related ul li:first-child{border-top:none}
+.article .related a{display:block; padding:16px 0; text-decoration:none; color:inherit}
+.article .related .date{display:block; font-size:12px; letter-spacing:.1em; color:var(--slate); margin-bottom:5px}
+.article .related .t{font-size:15px; font-weight:600; line-height:1.65; color:var(--navy); transition:color .15s}
+.article .related a:hover .t{color:var(--blue)}
+
+/* 記事のタグと、一覧のタグ導線 */
+.article .meta a{color:var(--slate); text-decoration:none; border-bottom:1px solid var(--rule)}
+.article .meta a:hover{color:var(--blue); border-bottom-color:var(--blue)}
+/* .taglinks は nav 要素なので、指定しないとヘッダ用の nav{justify-content:flex-end} を
+   拾って右へ寄る。左揃えを明示する。 */
+.taglinks{display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:9px 10px; margin:0 0 20px}
+/* 説明文の直後にタグ導線が来るときは間を詰める（.intro の 48px は次が本文のときの値） */
+.intro:has(+ .taglinks){margin-bottom:16px}
+
+/* 題字のあるページ（ブログ一覧・タグ一覧）は、題字→見出し→説明文が短いので
+   セクション上部と見出し周りを詰める。規制解説（.eyebrow）側は対象外。 */
+section:has(.masthead){padding-top:clamp(34px,4.4vw,52px)}
+.masthead + .lead{margin-bottom:12px}
+.taglinks > span{font-size:12px; font-weight:600; letter-spacing:.16em; color:var(--slate)}
+.taglinks a{
+  display:inline-block; padding:12px 14px; border:1px solid var(--rule); border-radius:2px;
+  font-size:13px; line-height:1.4; color:var(--ink); text-decoration:none;
+  transition:border-color .15s, color .15s;
+}
+.taglinks a:hover{border-color:var(--blue); color:var(--blue)}
+
+/* ---------- Blue Aegis Guide（アフィリエイトメディア）固有 ---------- */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:16px; margin:28px 0 40px}
+.cards .card{display:block; padding:22px; border:1px solid var(--rule); background:var(--white); color:var(--navy); text-decoration:none}
+.cards .card:hover{border-color:var(--blue)}
+.cards .card h3{margin:0 0 8px}
+.cards .card p{margin:0; color:var(--ink); font-size:.92em}
+.prnotice{padding:12px 14px; border-left:4px solid var(--blue); background:var(--paper); font-size:.9em; color:var(--ink)}
+.prmark{display:inline-block; margin-right:6px; padding:0 6px; border:1px solid var(--slate); border-radius:3px; font-size:.75em; line-height:1.6; color:var(--slate); vertical-align:middle}
+.aff a{font-weight:bold}
+.aff.pending{color:var(--slate)}
+.draftbanner{padding:8px 12px; background:#FFF4CC; color:#5A4500; font-weight:bold}

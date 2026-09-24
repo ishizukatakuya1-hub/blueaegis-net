@@ -1,0 +1,37 @@
+{
+  "_note": "案件カタログ。記事本文では {{aff:<id>}} と書く。url はASP・提携先の管理画面で発行されたリンクを、登録後にユーザーが記入する。空欄のままだと公開記事ではビルドが止まり、下書きでは「リンク準備中」と表示される。報酬条件はここに書かない（変わるため。事業計画書（リポジトリ外）の出典付き表を正とする）。",
+  "programs": [
+    {
+      "id": "freee-accounting",
+      "category": "saas",
+      "label": "freee会計の公式サイト",
+      "asp": "A8.net または もしもアフィリエイト（freee公式の募集ページで確認 2026-09-24）",
+      "url": "",
+      "active": true
+    },
+    {
+      "id": "moneyforward-cloud",
+      "category": "saas",
+      "label": "マネーフォワード クラウドの公式サイト",
+      "asp": "A8.net（A8の公式事例で確認。2022年時点の記載のため要再確認）",
+      "url": "",
+      "active": true
+    },
+    {
+      "id": "tbd-trademark",
+      "category": "ip",
+      "label": "商標出願オンラインサービスの公式サイト",
+      "asp": "未定（Toreru・Cotoboxとも媒体向けプログラムは未確認）",
+      "url": "",
+      "active": true
+    },
+    {
+      "id": "tbd-ai-tool",
+      "category": "ai",
+      "label": "AIツールの公式サイト",
+      "asp": "未定",
+      "url": "",
+      "active": true
+    }
+  ]
+}

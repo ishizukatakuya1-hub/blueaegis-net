@@ -1,0 +1,13 @@
+{
+  "name": "blueaegis-net",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Blue Aegis Guide（blueaegis.net）— Blue Aegis株式会社のアフィリエイトメディア",
+  "scripts": {
+    "build": "node tools/build.js",
+    "build:drafts": "node tools/build.js --drafts",
+    "validate": "node tools/build.js --validate-only",
+    "serve": "node tools/serve.js",
+    "agents": "node agents/run.js"
+  }
+}
