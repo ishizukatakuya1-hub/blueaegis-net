@@ -198,7 +198,7 @@ const ANALYTICS = CONFIG.analyticsToken
   ? `<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "${esc(CONFIG.analyticsToken)}"}'></script>`
   : '';
 
-const PR_NOTICE = `<p class="prnotice">本記事には広告（アフィリエイトリンク）が含まれます。リンク経由でお申し込みがあると、運営者の Blue Aegis株式会社 が報酬を受け取ることがあります。掲載順位や評価は報酬の有無で決めていません。詳しくは<a href="../ad-policy.html">広告掲載ポリシー</a>をご覧ください。</p>`;
+const PR_NOTICE = `<p class="prnotice">本記事には広告（アフィリエイトリンク）が含まれます。詳しくは<a href="../ad-policy.html">広告掲載ポリシー</a>をご覧ください。</p>`;
 const DRAFT_BANNER = `<p class="draftbanner">下書き（ローカル確認用）。公開ビルドには含まれません。</p>`;
 
 /** up はサイト直下までの相対（'../' など）。404 だけは '/' */

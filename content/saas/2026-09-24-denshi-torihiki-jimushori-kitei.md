@@ -85,8 +85,6 @@ JIIMA（日本文書情報マネジメント協会）の認証は、ソフトウ
 
 クラウド会計ソフトの例として、freee会計の案内を載せておきます。
 
-{{aff:freee-accounting}}
-
 {{aff:freee-accounting-banner}}
 
 ## まとめ
