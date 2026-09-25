@@ -6,7 +6,7 @@ description: "旧IT導入補助金にあたる「デジタル化・AI導入補�
 tags: ["補助金", "会計ソフト", "法人設立"]
 author: "Blue Aegis Guide 編集部"
 pr: true
-draft: true
+draft: false
 sources:
   - type: primary
     publisher: "デジタル化・AI導入補助金事務局"
