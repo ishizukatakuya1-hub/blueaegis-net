@@ -195,7 +195,7 @@ const LOGO = `<svg viewBox="0 0 380 130" role="img" aria-label="${esc(CONFIG.sit
       </svg>`;
 
 const ANALYTICS = CONFIG.analyticsToken
-  ? `<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "${esc(CONFIG.analyticsToken)}"}'></script>`
+  ? `<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "${esc(CONFIG.analyticsToken)}"}'></script><!-- End Cloudflare Web Analytics -->`
   : '';
 
 const PR_NOTICE = `<p class="prnotice">本記事には広告（アフィリエイトリンク）が含まれます。詳しくは<a href="../ad-policy.html">広告掲載ポリシー</a>をご覧ください。</p>`;
