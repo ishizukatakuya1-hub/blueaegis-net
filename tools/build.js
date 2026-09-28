@@ -119,6 +119,22 @@ function validate(cat, file, fm, body, catalog) {
   /* 【要確認】が残った原稿は公開させない（推測で埋めない運用の最後の砦） */
   if (fm.draft !== true && /【要確認】/.test(body)) fail(at, '【要確認】が残っています。確認して埋めるか削除すること');
 
+  /* 運営者の視点は必須（2026-09-29 ユーザー決定。もしものメディア運営ガイドラインが
+     「運営者の視点や感想が含まれていると判断し難い記事」を NG としているため）。
+     体験は data/experience.json の記録だけ、それ以外は判断と理由で書く（PUBLISHING.md）。 */
+  {
+    const report = fm.draft === true ? warn : fail;
+    const sec = /^## (運営者の視点|運営者の場合|当媒体での使い方)\s*$/m.exec(body.replace(/\r\n/g, '\n'));
+    if (!sec) {
+      report(at, '「## 運営者の視点」の節がありません（実体験は experience.json の記録だけ、なければ運営者の判断と理由を書く）');
+    } else {
+      const rest = body.replace(/\r\n/g, '\n').slice(sec.index + sec[0].length);
+      const next = rest.search(/^## /m);
+      const text = (next === -1 ? rest : rest.slice(0, next)).replace(/\s/g, '');
+      if (text.length < 120) report(at, `「${sec[1]}」の節が短すぎます（約${text.length}字。120字以上）`);
+    }
+  }
+
   for (const f of aff.lint(`${fm.title}\n${fm.description}\n${body}`)) {
     (f.sev === 'error' ? fail : warn)(at, `${f.reason}「${f.hit}」（${f.basis}）`);
   }

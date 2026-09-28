@@ -18,6 +18,18 @@
       "category": "saas",
       "fact": "blueaegis.co.jp がJPRSに登録された（WHOISの登録年月日 2026/08/12、Organization は Blue Aegis Inc. と公開表示）",
       "record": "JPRS WHOIS 照会結果（2026-09-24 確認）"
+    },
+    {
+      "date": "2026-06-17",
+      "category": "saas",
+      "fact": "Blue Aegis株式会社の設立準備として、法人印鑑3本セットをAmazonで購入した（商品代3,820円、2026-06-20お届け）",
+      "record": "証憑 EV-0023（Amazon領収書）"
+    },
+    {
+      "date": "2026-08-18",
+      "category": "ip",
+      "fact": "Blue Aegis株式会社が、オンラインサービスを使わず特許庁の電子出願ソフトから自社の商標を出願した（商願2026-096011、標準文字「Blue Aegis」、第42類1区分、出願料12,000円）",
+      "record": "特許庁 受付記録（受付番号 52601850905）"
     }
   ]
 }
