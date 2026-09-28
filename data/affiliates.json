@@ -61,6 +61,30 @@
       "asp": "A8.net（お名前.com、2026-09-24。a8mat先頭が他と異なる点はユーザー確認済み）",
       "url": "https://px.a8.net/svt/ejp?a8mat=4BCIRR+F171O2+50+2HHVNM",
       "active": true
+    },
+    {
+      "id": "rakuten-hankomaturi-tsuge-3set",
+      "category": "saas",
+      "label": "楽天市場：はんこ祭り 柘 法人3本セット（代表者印 天丸18.0mm・銀行印 寸胴18.0mm・角印21.0mm）の商品ページ",
+      "asp": "A8.net（楽天アフィリエイト、2026-09-28 任意ページリンク生成。リンク先 https://item.rakuten.co.jp/hankomaturi/10000086/）",
+      "url": "https://rpx.a8.net/svt/ejp?a8mat=4BCIRR+F0LM2A+2HOM+BW8O1&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa26092462362_4BCIRR_F0LM2A_2HOM_BW8O1%3Fpc%3Dhttps%253A%252F%252Fitem.rakuten.co.jp%252Fhankomaturi%252F10000086%252F%26m%3Dhttps%253A%252F%252Fitem.rakuten.co.jp%252Fhankomaturi%252F10000086%252F",
+      "active": true
+    },
+    {
+      "id": "rakuten-hankoya-joutsuge-3set-a",
+      "category": "saas",
+      "label": "楽天市場：ハンコヤストア 法人印鑑 上柘印鑑3本Aセット（角21mm）の商品ページ",
+      "asp": "A8.net（楽天アフィリエイト、2026-09-28 任意ページリンク生成。リンク先 https://item.rakuten.co.jp/hankoya-shop/h-3set-ac/）",
+      "url": "https://rpx.a8.net/svt/ejp?a8mat=4BCIRR+F0LM2A+2HOM+BW8O1&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa26092462362_4BCIRR_F0LM2A_2HOM_BW8O1%3Fpc%3Dhttps%253A%252F%252Fitem.rakuten.co.jp%252Fhankoya-shop%252Fh-3set-ac%252F%26m%3Dhttps%253A%252F%252Fitem.rakuten.co.jp%252Fhankoya-shop%252Fh-3set-ac%252F",
+      "active": true
+    },
+    {
+      "id": "rakuten-hankomaturi-kurosuigyu-3set",
+      "category": "saas",
+      "label": "楽天市場：はんこ祭り 黒水牛 法人3本セット（代表者印 天丸18・銀行印 寸胴18・角印21）の商品ページ",
+      "asp": "A8.net（楽天アフィリエイト、2026-09-28 任意ページリンク生成。リンク先 https://item.rakuten.co.jp/hankomaturi/10000089/）",
+      "url": "https://rpx.a8.net/svt/ejp?a8mat=4BCIRR+F0LM2A+2HOM+BW8O1&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa26092462362_4BCIRR_F0LM2A_2HOM_BW8O1%3Fpc%3Dhttps%253A%252F%252Fitem.rakuten.co.jp%252Fhankomaturi%252F10000089%252F%26m%3Dhttps%253A%252F%252Fitem.rakuten.co.jp%252Fhankomaturi%252F10000089%252F",
+      "active": true
     }
   ]
 }
