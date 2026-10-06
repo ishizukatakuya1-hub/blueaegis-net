@@ -85,6 +85,30 @@
       "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-09-29 A8から切替）",
       "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fitem.rakuten.co.jp%2Fhankomaturi%2F10000089%2F",
       "active": true
+    },
+    {
+      "id": "rakuten-ksdenki-buffalo-hd-eds4u3-be",
+      "category": "saas",
+      "label": "楽天市場：ケーズデンキ バッファロー 外付けHDD HD-EDS4U3-BE（4TB）の商品ページ",
+      "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-07 作成）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fitem.rakuten.co.jp%2Fksdenki%2F4981254061619%2F",
+      "active": true
+    },
+    {
+      "id": "rakuten-etre-buffalo-hd-nrld",
+      "category": "saas",
+      "label": "楽天市場：イートレンド バッファロー HD-NRLDシリーズ（2TB/4TB/6TB/8TB）の商品ページ",
+      "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-07 作成）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fitem.rakuten.co.jp%2Fetre%2F1180435%2F",
+      "active": true
+    },
+    {
+      "id": "rakuten-spd-sandisk-extreme-ssd-1tb",
+      "category": "saas",
+      "label": "楽天市場：SPD サンディスク ポータブルSSD Extreme 1TB（SDSSDE61-1T00-G25）の商品ページ",
+      "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-07 作成）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fitem.rakuten.co.jp%2Fspd-shop%2Fsassd1tb-e61%2F",
+      "active": true
     }
   ]
 }
