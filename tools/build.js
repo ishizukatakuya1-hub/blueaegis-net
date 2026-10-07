@@ -114,6 +114,14 @@ function validate(cat, file, fm, body, catalog) {
     });
   }
 
+  /* 冒頭写真（任意）。ファイルは img/hero/ に置き、出どころを必ず書く（PUBLISHING.md） */
+  if (fm.hero) {
+    if (!/^[a-z0-9-]+\.(jpg|png|webp)$/.test(String(fm.hero))) fail(at, 'hero は img/hero/ 直下のファイル名（英小文字・数字・ハイフン）');
+    else if (!fs.existsSync(path.join(ROOT, 'img', 'hero', String(fm.hero)))) fail(at, `hero の画像がありません: img/hero/${fm.hero}`);
+    if (!fm.heroAlt) fail(at, 'hero を置くなら heroAlt（写真の説明）が必要です');
+    if (!fm.heroCredit || !/^https:\/\//.test(String(fm.heroCreditUrl || ''))) fail(at, 'hero を置くなら heroCredit と heroCreditUrl（写真の出どころ）が必要です');
+  }
+
   aff.checkLinks(at, fm, body, catalog, fail, warn);
 
   /* 【要確認】が残った原稿は公開させない（推測で埋めない運用の最後の砦） */
@@ -168,12 +176,76 @@ function inline(s) {
     .replace(/`([^`]+)`/g, '<code>$1</code>');
 }
 
+/* ---------------- 図解ブロック（:::points / :::steps / :::compare） ----------------
+   本文の事実を並べ直して見せるための部品。画像ではなく HTML で出すので、外部への通信は増えない。
+   書き方は PUBLISHING.md。ここに本文にない事実を書かないこと。 */
+const ICON_PATHS = {
+  doc: '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>',
+  calendar: '<rect x="4" y="5" width="16" height="16" rx="1"/><path d="M4 10h16M8 3v4M16 3v4"/>',
+  shield: '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/>',
+  drive: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 14h18M16.5 16h1"/>',
+  cloud: '<path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9.5 4.3 4.3 0 0 0 7 18z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 7 9-7"/>',
+  stamp: '<circle cx="12" cy="8" r="4"/><path d="M10 12v4h4v-4M6 16h12v3H6z"/>',
+  yen: '<circle cx="12" cy="12" r="9"/><path d="M8.5 7l3.5 5 3.5-5M12 12v6M9 13h6M9 16h6"/>',
+  check: '<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',
+  pen: '<path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  search: '<circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/>',
+  alert: '<path d="M12 4l9 16H3z"/><path d="M12 10v5M12 17.5v.5"/>',
+  building: '<path d="M5 21V4h9v17M14 9h5v12M3 21h18M8 8h3M8 12h3M8 16h3"/>',
+  spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16v4M17 18h4"/>',
+  laptop: '<rect x="5" y="5" width="14" height="10" rx="1"/><path d="M3 19h18l-2-4H5z"/>',
+  link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+  people: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.3"/><path d="M16 14.2c3 0 5 2 5 5"/>',
+  x: '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
+};
+const icon = name => `<svg class="ico" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name]}</svg>`;
+
+function figureBlock(lines, file) {
+  const head = /^:::(points|steps|compare)(?:\s+(.+))?$/.exec(lines[0]);
+  if (!head || lines[lines.length - 1].trim() !== ':::') { fail(file, `図解ブロックの書式が不正です: ${lines[0].slice(0, 30)}`); return ''; }
+  const [, type, caption] = head;
+  const rows = lines.slice(1, -1).map(l => l.trim()).filter(Boolean);
+  const cells = l => l.split('|').map(c => c.trim());
+  const ico = name => { if (!ICON_PATHS[name]) { fail(file, `図解ブロックのアイコン名が不明です: ${name}`); return ''; } return icon(name); };
+  let inner = '';
+  if (type === 'points') {
+    if (rows.length < 2 || rows.length > 4) fail(file, ':::points は2〜4行');
+    inner = rows.map(r => {
+      const [ic, big, text] = cells(r);
+      if (!big || !text || cells(r).length !== 3) { fail(file, `:::points の行は「アイコン | 見出し | 説明」: ${r.slice(0, 30)}`); return ''; }
+      return `<div class="fig-item">${ico(ic)}<span class="fig-big">${inline(big)}</span><span class="fig-text">${inline(text)}</span></div>`;
+    }).join('');
+  } else if (type === 'steps') {
+    if (rows.length < 2 || rows.length > 6) fail(file, ':::steps は2〜6行');
+    inner = rows.map((r, i) => {
+      const [big, text] = cells(r);
+      if (!big || cells(r).length > 2) fail(file, `:::steps の行は「見出し | 説明」（説明は省略可）: ${r.slice(0, 30)}`);
+      return `<div class="fig-item"><span class="fig-num" aria-hidden="true">${i + 1}</span><span class="fig-big">${inline(big)}</span>${text ? `<span class="fig-text">${inline(text)}</span>` : ''}</div>`;
+    }).join('');
+  } else {
+    const cols = [];
+    for (const r of rows) {
+      if (r.startsWith('= ')) { const [title, ic] = cells(r.slice(2)); cols.push({ title, ic, items: [] }); }
+      else if (r.startsWith('- ') && cols.length) cols[cols.length - 1].items.push(r.slice(2));
+      else fail(file, `:::compare の行は「= 見出し | アイコン」か「- 項目」: ${r.slice(0, 30)}`);
+    }
+    if (cols.length < 2 || cols.length > 3) fail(file, ':::compare の列は2〜3');
+    for (const c of cols) if (!c.title || !c.items.length) fail(file, `:::compare の列に見出しか項目がありません: ${String(c.title).slice(0, 30)}`);
+    inner = cols.map(c => `<div class="fig-item">${c.ic ? ico(c.ic) : ''}<span class="fig-big">${inline(c.title)}</span>${c.items.map(x => `<span class="fig-text">${inline(x)}</span>`).join('')}</div>`).join('');
+  }
+  return `<figure class="fig fig-${type}"><div class="fig-grid">${inner}</div>${caption ? `<figcaption>${inline(caption)}</figcaption>` : ''}</figure>`;
+}
+
 function renderMarkdown(md, file) {
   const out = [];
   for (const raw of md.replace(/\r\n/g, '\n').split(/\n{2,}/)) {
     const block = raw.trim();
     if (!block) continue;
     const lines = block.split('\n');
+    if (/^:::/.test(block)) { out.push(figureBlock(lines, file)); continue; }
     if (/^###\s/.test(block)) { out.push(`<h3>${inline(block.replace(/^###\s+/, ''))}</h3>`); continue; }
     if (/^##\s/.test(block))  { out.push(`<h2>${inline(block.replace(/^##\s+/, ''))}</h2>`); continue; }
     if (lines.every(l => /^>\s?/.test(l))) { out.push(`<blockquote>${inline(lines.map(l => l.replace(/^>\s?/, '')).join(' '))}</blockquote>`); continue; }
@@ -289,6 +361,12 @@ function tagLine(tags, tagPages) {
     ? `<a href="../tags/${encodeURIComponent(tagSlug(x))}.html">${esc(x)}</a>` : esc(x)).join('・');
 }
 
+function heroHtml(fm, up) {
+  if (!fm.hero) return '';
+  return `<figure class="heroimg"><img src="${up}img/hero/${esc(fm.hero)}" width="1280" height="720" alt="${esc(fm.heroAlt)}" decoding="async">`
+    + `<figcaption>写真：<a href="${esc(fm.heroCreditUrl)}" rel="noopener">${esc(fm.heroCredit)}</a></figcaption></figure>`;
+}
+
 function articleHtml(post, tagPages, catalog) {
   const isDraft = post.fm.draft === true;
   const body = aff.expand(post.html, catalog);
@@ -303,6 +381,7 @@ function articleHtml(post, tagPages, catalog) {
   <h1>${esc(post.fm.title)}</h1>
   <p class="meta">${esc(post.date)}${post.fm.updated ? `（更新 ${esc(post.fm.updated)}）` : ''}　${tagLine(post.fm.tags, tagPages)}</p>
   ${post.fm.pr ? PR_NOTICE : ''}
+  ${heroHtml(post.fm, '../')}
 
   ${body}
 
@@ -316,10 +395,10 @@ function articleHtml(post, tagPages, catalog) {
   });
 }
 
-function postListHtml(posts, hrefOf) {
+function postListHtml(posts, hrefOf, up = '../') {
   return posts.map(p => `      <li>
-        <a href="${hrefOf(p)}">
-          <span class="date">${esc(p.date)}　${esc(CATEGORIES[p.cat].name)}${p.fm.pr ? '　<span class="prmark">PR</span>' : ''}</span>
+        <a href="${hrefOf(p)}"${p.fm.hero ? ' class="has-thumb"' : ''}>
+          ${p.fm.hero ? `<img class="thumb" src="${up}img/hero/${esc(p.fm.hero)}" width="1280" height="720" alt="" loading="lazy" decoding="async">` : ''}<span class="date">${esc(p.date)}　${esc(CATEGORIES[p.cat].name)}${p.fm.pr ? '　<span class="prmark">PR</span>' : ''}</span>
           <h3>${esc(p.fm.title)}</h3>
           <p>${esc(p.fm.description || '')}</p>
         </a>
@@ -382,7 +461,7 @@ ${cards}
     </div>
     <h2>新着記事</h2>
     <ul class="postlist">
-${postListHtml(all.slice(0, HOME_LATEST), p => `${p.cat}/${p.slug}.html`) || '      <li><p style="padding:28px 0">まだ記事がありません。</p></li>'}
+${postListHtml(all.slice(0, HOME_LATEST), p => `${p.cat}/${p.slug}.html`, '') || '      <li><p style="padding:28px 0">まだ記事がありません。</p></li>'}
     </ul>
   </div>
 </section>`,

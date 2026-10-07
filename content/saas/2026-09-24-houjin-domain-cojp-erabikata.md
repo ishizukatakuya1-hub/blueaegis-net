@@ -8,6 +8,10 @@ tags: ["ドメイン", "法人設立", "レジストラ"]
 author: "Blue Aegis Guide 編集部"
 pr: true
 draft: false
+hero: domain-cojp.webp
+heroAlt: "見上げた高層ビル群"
+heroCredit: "f.u.k.e.i（Unsplash）"
+heroCreditUrl: https://unsplash.com/photos/9YAM8k-aFG8
 sources:
   - type: primary
     publisher: "株式会社日本レジストリサービス（JPRS）"
@@ -40,6 +44,12 @@ sources:
 法人を設立したら、ドメインはまず **.co.jp** を検討してください。日本で登記した会社しか取れず、1つの会社につき1つしか持てないため、そのドメインを持っていること自体が「登記された会社である」ことの目印になります。
 
 登録先（レジストラ）は、初年度の安さではなく**2年目以降の更新料**で選ぶのが基本です。ドメインは会社が続くかぎり毎年更新するものなので、総額の大半は更新料で決まります。
+
+:::points この記事の要点（.co.jp の条件はJPRSの規則より）
+building | .co.jp | 日本で登記した会社が取れる。原則として1組織につき1つ
+yen | 更新料で選ぶ | 登録先は、初年度の安さではなく2年目以降の更新料で選ぶのが基本
+clock | 6か月 | 設立前にできる仮登録の期間。その間に登記を済ませて本登録しないと廃止される
+:::
 
 ## .co.jp の取得条件（JPRSの規則）
 

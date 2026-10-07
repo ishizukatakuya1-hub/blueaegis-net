@@ -7,6 +7,10 @@ tags: ["ドメイン", "法人設立", "商標"]
 author: "Blue Aegis Guide 編集部"
 pr: true
 draft: false
+hero: premium-domain.webp
+heroAlt: "灰色の面に置かれた1本の鍵"
+heroCredit: "Andre William（Unsplash）"
+heroCreditUrl: https://unsplash.com/photos/Dt5uJkuoSIk
 sources:
   - type: primary
     publisher: "お名前.com"
@@ -33,6 +37,12 @@ sources:
 2. **いまの持ち主が売りに出していれば、買い取る**
 
 小さな法人なら、まず1を検討してください。2は高額になりやすく（販売ページに並ぶ .xyz の例は9万円台から180万円台）、お名前.com の規約では、買ったあとで商標などの問題が出ても売り手は保証しないとされているからです。それでも「この文字列でなければ」という理由がある場合に、2を検討します。
+
+:::points この記事の要点（お名前.com の販売ページと規約より。2026年9月24日時点）
+pen | まず別の文字列 | 小さな法人なら、別の文字列や別の種類（.co.jp など）で取ることを先に検討する
+yen | 9万円台〜180万円台 | 販売ページに例として並んでいた .xyz のドメインの価格（税込）
+alert | 保証なし | 規約では、買ったあとで商標などの問題が出ても売り手は保証しないとされている
+:::
 
 ## 運営者の場合
 
