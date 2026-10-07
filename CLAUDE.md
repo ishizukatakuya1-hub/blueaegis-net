@@ -44,7 +44,7 @@ Blue Aegis株式会社のアフィリエイトメディア。**詳細の正本�
 ## 触るときの決まり（blueaegis-site から継承）
 
 - **意匠はコーポレートサイト（blueaegis.co.jp、`../blueaegis-site/style.css`）に合わせる**（2026-10-07 ユーザー指示）。見出しの明朝（`fonts/shippori-mincho-600/` は向こうの写し）、写真に紺を重ねる扱い、図解の形（`.card`・`.domains`・`.steps` と同じ）。`style.css` 末尾の「コーポレートサイトと揃える意匠」の節。
-- 写真は `img/hero/` に同梱した Unsplash License のものだけ。外部の画像を直接読み込まない。**新しい写真の取得はユーザーの承認が要る**（`PUBLISHING.md`）。
+- 写真は `img/hero/` に同梱した Unsplash License のものだけ。外部の画像を直接読み込まない。**Unsplash の無料写真は自動実行でも取得してよい（2026-10-07 ユーザー決定）。それ以外の出どころはユーザーの承認が要る**（条件は `PUBLISHING.md`）。
 - `style.css` のフェードイン対象と `script.js` の `SEL` を揃える（検査が止める）。
 - 日付に `toISOString()` を使わない。`seo.todayJst()` を使う。
 - シェルのヒアドキュメントで JavaScript を書かない。Write ツールを使う。

@@ -58,7 +58,7 @@ heroCreditUrl: https://unsplash.com/photos/xEK3FiK6H3o
 ```
 
 - 写真は **Unsplash License の無料写真だけ**（Unsplash+ は使わない）。`images.unsplash.com/<photo>?fm=webp&q=70&fit=crop&w=1280&h=720` で取得して `img/hero/` に同梱する。外部の画像を直接読み込まない（プライバシーポリシーに書いた通信先が増えるため）。
-- **新しい写真のダウンロードは、ユーザーの承認を得てから。** 自動実行では取得しない（既にある写真を使うか、写真なしで公開する）。
+- **Unsplash の無料写真は、自動実行でも取得してよい**（2026-10-07 ユーザー決定）。条件は、写真ページのタイトルが「…Unsplashに収録の無料写真」であること、画像の URL が `images.unsplash.com/photo-…` で始まること（`premium_photo-` は Unsplash+）。確かめられなければ取得しない。Unsplash 以外から取得するときは、ユーザーの承認を得る。
 - 人物の顔、他社の画面、記事の内容と食い違うものが写った写真は選ばない。
 
 ### 図解ブロック
