@@ -109,6 +109,30 @@
       "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-07 作成）",
       "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fitem.rakuten.co.jp%2Fspd-shop%2Fsassd1tb-e61%2F",
       "active": true
+    },
+    {
+      "id": "rakuten-books-sukkiri-boki3-2026",
+      "category": "saas",
+      "label": "楽天ブックス：2026年度版 スッキリわかる 日商簿記3級（TAC出版）の商品ページ",
+      "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-08 作成。楽天ブックスは同プロモーションの成果対象）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F18475359%2F",
+      "active": true
+    },
+    {
+      "id": "rakuten-books-kaikei-quiz-kaiteiban",
+      "category": "saas",
+      "label": "楽天ブックス：【改訂版】会計クイズを解くだけで財務3表がわかる 世界一楽しい決算書の読み方（KADOKAWA）の商品ページ",
+      "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-08 作成。楽天ブックスは同プロモーションの成果対象）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F18485403%2F",
+      "active": true
+    },
+    {
+      "id": "rakuten-books-sokkou-nencho-r8",
+      "category": "saas",
+      "label": "楽天ブックス：令和8年版 これだけでOK 速攻！年末調整（日本法令）の商品ページ",
+      "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-08 作成。楽天ブックスは同プロモーションの成果対象）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F18790437%2F",
+      "active": true
     }
   ]
 }
