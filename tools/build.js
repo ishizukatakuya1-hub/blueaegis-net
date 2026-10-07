@@ -361,6 +361,9 @@ function tagLine(tags, tagPages) {
     ? `<a href="../tags/${encodeURIComponent(tagSlug(x))}.html">${esc(x)}</a>` : esc(x)).join('・');
 }
 
+/* 背景に敷く大きな英字（すかし）。コーポレートサイトの data-word と同じ扱いで、CSS の擬似要素が描く */
+const BG_WORD = { saas: 'BACK OFFICE', ip: 'TRADEMARK', ai: 'AI TOOLS' };
+
 function heroHtml(fm, up) {
   if (!fm.hero) return '';
   return `<figure class="heroimg"><img src="${up}img/hero/${esc(fm.hero)}" width="1280" height="720" alt="${esc(fm.heroAlt)}" decoding="async">`
@@ -376,7 +379,8 @@ function articleHtml(post, tagPages, catalog) {
     canonical: `${BASE}/${post.cat}/${post.slug}.html`,
     ogType: 'article',
     robots: isDraft ? 'noindex' : null,
-    main: `<main class="wrap article">
+    main: `<div class="artbg" data-word="${BG_WORD[post.cat] || 'GUIDE'}">
+<main class="wrap article">
   ${isDraft ? DRAFT_BANNER : ''}<p class="kicker">${esc(CATEGORIES[post.cat].name)}</p>
   <h1>${esc(post.fm.title)}</h1>
   <p class="meta">${esc(post.date)}${post.fm.updated ? `（更新 ${esc(post.fm.updated)}）` : ''}　${tagLine(post.fm.tags, tagPages)}</p>
@@ -391,7 +395,8 @@ function articleHtml(post, tagPages, catalog) {
   </div>
 
   <p class="backlink"><a href="index.html">← ${esc(CATEGORIES[post.cat].name)}の記事一覧へ</a></p>
-</main>`,
+</main>
+</div>`,
   });
 }
 
@@ -412,7 +417,7 @@ function categoryHtml(cat, posts) {
     description: c.desc,
     canonical: `${BASE}/${cat}/`,
     ogType: 'website',
-    main: `<section>
+    main: `<section class="listbg" data-word="${BG_WORD[cat] || 'GUIDE'}">
   <div class="wrap">
     <h1 class="lead">${esc(c.name)}</h1>
     <p class="intro">${esc(c.desc)}</p>
@@ -430,7 +435,7 @@ function tagPageHtml(tag, posts) {
     description: `${tag}に関する記事を新しい順に並べています。いずれも一次資料に当たって確かめた事実をもとに書いた、${CONFIG.siteName}の記事です。`,
     canonical: `${BASE}/tags/${encodeURIComponent(tagSlug(tag))}.html`,
     ogType: 'website',
-    main: `<section>
+    main: `<section class="listbg" data-word="GUIDE">
   <div class="wrap">
     <h1 class="lead">${esc(tag)}</h1>
     <ul class="postlist">
@@ -452,10 +457,14 @@ function homeHtml(all) {
     description: `${CONFIG.tagline}。運営は知的財産と規制対応技術を扱う Blue Aegis株式会社。広告を含む記事には冒頭に明記しています。`,
     canonical: `${BASE}/`,
     ogType: 'website',
-    main: `<section>
+    main: `<section class="tophero">
   <div class="wrap">
     <h1 class="lead">${esc(CONFIG.siteName)}</h1>
     <p class="intro">${esc(CONFIG.tagline)}。</p>
+  </div>
+</section>
+<section class="listbg" data-word="GUIDE">
+  <div class="wrap">
     <div class="cards">
 ${cards}
     </div>
