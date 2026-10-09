@@ -140,6 +140,9 @@ function validate(cat, file, fm, body, catalog) {
       const next = rest.search(/^## /m);
       const text = (next === -1 ? rest : rest.slice(0, next)).replace(/\s/g, '');
       if (text.length < 120) report(at, `「${sec[1]}」の節が短すぎます（約${text.length}字。120字以上）`);
+      /* 記録がないことの断り書きは書かない（2026-10-09 ユーザー決定）。判断と理由から書き始める。 */
+      const disclaimer = /記録[がは][^。]{0,20}(ありません|ない|なく)|(体験|感想)は書いていません|(体験|感想)は書いておりません/.exec(text);
+      if (disclaimer) report(at, `「${sec[1]}」の節に、記録がないことの断り書きがあります「${disclaimer[0]}」。断らずに判断と理由から書くこと（PUBLISHING.md）`);
     }
   }
 
@@ -311,11 +314,11 @@ ${robots ? `<meta name="robots" content="${robots}">\n` : ''}<meta property="og:
 
 <header>
   <div class="wrap headbar">
-    <a href="${up || './'}index.html" style="display:block">
+    <a href="${up || './'}" style="display:block">
       ${LOGO}
     </a>
     <nav>
-${CATS.map(c => `      <a href="${up}${c}/index.html">${esc(CATEGORIES[c].name)}</a>`).join('\n')}
+${CATS.map(c => `      <a href="${up}${c}/">${esc(CATEGORIES[c].name)}</a>`).join('\n')}
     </nav>
   </div>
 </header>
@@ -394,7 +397,7 @@ function articleHtml(post, tagPages, catalog) {
     <p>本記事は公表資料と運営者の確認できた範囲に基づく整理であり、法的・税務的な助言ではありません。料金・仕様は変わることがあるため、お申し込み前に必ず各社の公式情報をご確認ください。</p>
   </div>
 
-  <p class="backlink"><a href="index.html">← ${esc(CATEGORIES[post.cat].name)}の記事一覧へ</a></p>
+  <p class="backlink"><a href="./">← ${esc(CATEGORIES[post.cat].name)}の記事一覧へ</a></p>
 </main>
 </div>`,
   });
@@ -447,7 +450,7 @@ ${postListHtml(posts, p => `../${p.cat}/${p.slug}.html`)}
 }
 
 function homeHtml(all) {
-  const cards = CATS.map(c => `      <a class="card" href="${c}/index.html">
+  const cards = CATS.map(c => `      <a class="card" href="${c}/">
         <h3>${esc(CATEGORIES[c].name)}</h3>
         <p>${esc(CATEGORIES[c].desc)}</p>
       </a>`).join('\n');
@@ -500,7 +503,7 @@ function notFoundHtml() {
     canonical: `${BASE}/404.html`, ogType: 'website',
     main: `<main class="wrap article">
   <h1>ページが見つかりません</h1>
-  <p>URLが変わったか、削除された可能性があります。<a href="/index.html">トップページ</a>からお探しください。</p>
+  <p>URLが変わったか、削除された可能性があります。<a href="/">トップページ</a>からお探しください。</p>
 </main>`,
   });
 }
@@ -540,8 +543,8 @@ function ogName(relPath) {
 
 function crumbsHtml(desc, cls) {
   const up = '../';
-  const parts = [`<a href="${up}index.html">ホーム</a>`];
-  if (CATEGORIES[cls.section]) parts.push(`<a href="index.html">${esc(CATEGORIES[cls.section].name)}</a>`);
+  const parts = [`<a href="${up}">ホーム</a>`];
+  if (CATEGORIES[cls.section]) parts.push(`<a href="./">${esc(CATEGORIES[cls.section].name)}</a>`);
   parts.push(`<span aria-current="page">${esc(desc.h1 || desc.title)}</span>`);
   return `<nav class="crumbs" aria-label="現在地">${parts.join('<span class="sep" aria-hidden="true">/</span>')}</nav>\n  `;
 }
