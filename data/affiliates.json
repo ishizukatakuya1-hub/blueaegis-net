@@ -133,6 +133,14 @@
       "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-08 作成。楽天ブックスは同プロモーションの成果対象）",
       "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F18790437%2F",
       "active": true
+    },
+    {
+      "id": "amazon-business-register",
+      "category": "saas",
+      "label": "Amazonビジネスの登録ページ（Amazon.co.jp）",
+      "asp": "もしもアフィリエイト（Amazon.co.jp、どこでもリンク、2026-10-11 作成。リンク先は www.amazon.co.jp/tryAB＝Amazonビジネスの登録ページ）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5830031&p_id=170&pc_id=185&pl_id=4062&url=http%3A%2F%2Fwww.amazon.co.jp%2FtryAB",
+      "active": true
     }
   ]
 }
