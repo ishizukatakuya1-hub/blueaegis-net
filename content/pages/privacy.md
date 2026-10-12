@@ -24,7 +24,16 @@ Blue Aegis株式会社（以下「運営者」）は、Blue Aegis Guide（以下
 
 Cloudflare は、Web Analytics では訪問者の個人データを収集・利用しないと説明しています。運営者がこのツールで利用者個人を特定することはありません。
 
-同じドメインで公開している物件紹介ページ（/hills-seikyu/、/sandy-coco/）にも、同じ Cloudflare Web Analytics を入れています。物件紹介ページではこのほか、地図の表示に Google マップの埋め込みを、文字の表示に Google Fonts を使っており、ページを表示するとGoogleにも表示したページの情報やブラウザの情報が送信されます（Google のプライバシーポリシー：https://policies.google.com/privacy ）。
+同じドメインで公開している物件紹介ページ（/hills-seikyu/、/sandy-coco/）にも、同じ Cloudflare Web Analytics を入れています。物件紹介ページではこのほか、次の外部送信があります。
+
+| 項目 | 内容 |
+|---|---|
+| 送信先 | Google LLC（Google アナリティクス 4、Google マップの埋め込み、Google Fonts） |
+| 送信される情報 | 表示したページのURL、参照元のURL、ブラウザや端末の種類、おおよその地域、ページ内でのスクロールやリンクのクリック（電話・メール・経路検索・管理会社サイトへのリンクなど）、Cookie に保存した識別子 |
+| 利用目的 | 物件紹介ページの閲覧状況とお問い合わせにつながった導線を把握し、ページの改善に役立てるため。地図と文字を表示するため |
+| 送信先のプライバシーポリシー | https://policies.google.com/privacy |
+
+Google アナリティクスは Cookie を使いますが、Google シグナルと広告のパーソナライズは無効にしており、運営者が利用者個人を特定することはありません。ブラウザの設定で Cookie を無効にするか、Google が提供するオプトアウト アドオン（https://tools.google.com/dlpage/gaoptout ）を使うと、計測を止められます。
 
 ## 広告リンク
 
