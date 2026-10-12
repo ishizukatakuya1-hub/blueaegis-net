@@ -35,7 +35,7 @@ const RELATED_MAX = 3;
 const HOME_LATEST = 9;
 
 /* ビルド出力に含めない。直下の .md / .json は社内向けなので配信しない */
-const SKIP = new Set(['content', 'tools', 'agents', 'data', 'docs', 'queue', '_site', 'node_modules',
+const SKIP = new Set(['content', 'tools', 'agents', 'data', 'docs', 'queue', '_site', 'node_modules', 'properties',
                       '.git', '.github', '.claude', 'package.json', 'package-lock.json']);
 const SKIP_TOP = /\.(md|json)$/i;
 
@@ -709,6 +709,30 @@ function main() {
   if (result.warnings.length) { console.log('検査の警告:'); result.warnings.forEach(w => console.log('  ' + w)); }
   if (result.errors.length) { console.error('検査エラー:'); result.errors.forEach(e => console.error('  ' + e)); process.exit(1); }
   console.log(`検査 ${result.count} ページ：問題なし`);
+  copyProperties();
+}
+
+/* 物件サイト（properties/<名前>/ → /<名前>/）。メディアとは別物なので、
+   SEO の加工と検査の対象にせず、検査のあとにそのまま置く。サイトマップには載せる */
+function copyProperties() {
+  const dir = path.join(ROOT, 'properties');
+  if (!fs.existsSync(dir)) return;
+  const urls = [];
+  for (const name of fs.readdirSync(dir)) {
+    const src = path.join(dir, name);
+    if (!fs.statSync(src).isDirectory()) continue;
+    if (fs.existsSync(path.join(OUT, name))) fail(`properties/${name}`, 'メディア側と同じ名前のフォルダがあります');
+    copyDir(src, path.join(OUT, name), false);
+    for (const f of fs.readdirSync(src).filter(f => f.endsWith('.html')).sort()) {
+      urls.push(`${BASE}/${name}/${f === 'index.html' ? '' : f}`);
+    }
+  }
+  if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
+  const lastmod = seo.todayJst(new Date());
+  const add = urls.map(u => `  <url>\n    <loc>${u}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`).join('\n');
+  const sm = path.join(OUT, 'sitemap.xml');
+  fs.writeFileSync(sm, fs.readFileSync(sm, 'utf8').replace('</urlset>', add + '\n</urlset>'));
+  console.log(`物件サイト ${urls.length} ページを配置（検査対象外）`);
 }
 
 main();
