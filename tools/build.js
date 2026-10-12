@@ -724,6 +724,13 @@ function copyProperties() {
     if (fs.existsSync(path.join(OUT, name))) fail(`properties/${name}`, 'メディア側と同じ名前のフォルダがあります');
     copyDir(src, path.join(OUT, name), false);
     for (const f of fs.readdirSync(src).filter(f => f.endsWith('.html')).sort()) {
+      // 計測タグはメディアと同じ Cloudflare Web Analytics を入れる
+      if (ANALYTICS) {
+        const out = path.join(OUT, name, f);
+        const html = fs.readFileSync(out, 'utf8');
+        if (!html.includes('</head>')) fail(`properties/${name}/${f}`, '</head> がありません');
+        else fs.writeFileSync(out, html.replace('</head>', ANALYTICS + '\n</head>'));
+      }
       urls.push(`${BASE}/${name}/${f === 'index.html' ? '' : f}`);
     }
   }
