@@ -712,6 +712,28 @@ function main() {
   copyProperties();
 }
 
+/* 物件サイト用の GA4 タグ。反響（電話・メール・ルート検索・管理会社サイト）をイベントで数える。
+   Google シグナルと広告のパーソナライズは使わない */
+function propertyGaTag(site) {
+  const id = CONFIG.propertiesGaId;
+  if (!id) return '';
+  if (!/^G-[A-Z0-9]+$/.test(id)) { fail('site.config.json', `propertiesGaId の形式が違います: ${id}`); return ''; }
+  const cfg = JSON.stringify({ allow_google_signals: false, allow_ad_personalization_signals: false, property_site: site });
+  return `<script async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','${id}',${cfg});
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href'),ev=null;
+  if(/^tel:/.test(h))ev='contact_tel';
+  else if(/^mailto:/.test(h))ev='contact_mail';
+  else if(/google\\.[^/]+\\/maps\\/dir/.test(h))ev='route_search';
+  else if(/pitat\\.com|sanko-e\\.net/.test(h))ev='agency_site';
+  if(ev)gtag('event',ev,{property_site:'${site}',link_text:(a.textContent||'').trim().slice(0,60),link_url:h.slice(0,100)});
+});
+</script>`;
+}
+
 /* 物件サイト（properties/<名前>/ → /<名前>/）。メディアとは別物なので、
    SEO の加工と検査の対象にせず、検査のあとにそのまま置く。サイトマップには載せる */
 function copyProperties() {
@@ -724,12 +746,13 @@ function copyProperties() {
     if (fs.existsSync(path.join(OUT, name))) fail(`properties/${name}`, 'メディア側と同じ名前のフォルダがあります');
     copyDir(src, path.join(OUT, name), false);
     for (const f of fs.readdirSync(src).filter(f => f.endsWith('.html')).sort()) {
-      // 計測タグはメディアと同じ Cloudflare Web Analytics を入れる
-      if (ANALYTICS) {
+      // 計測タグ：メディアと同じ Cloudflare Web Analytics に加え、物件サイトだけ GA4（国内向けのため Cookie 利用可、2026-10-13 ユーザー判断）
+      const tags = ANALYTICS + propertyGaTag(name);
+      if (tags) {
         const out = path.join(OUT, name, f);
         const html = fs.readFileSync(out, 'utf8');
         if (!html.includes('</head>')) fail(`properties/${name}/${f}`, '</head> がありません');
-        else fs.writeFileSync(out, html.replace('</head>', ANALYTICS + '\n</head>'));
+        else fs.writeFileSync(out, html.replace('</head>', tags + '\n</head>'));
       }
       urls.push(`${BASE}/${name}/${f === 'index.html' ? '' : f}`);
     }
