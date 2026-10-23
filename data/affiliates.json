@@ -141,6 +141,22 @@
       "asp": "もしもアフィリエイト（Amazon.co.jp、どこでもリンク、2026-10-11 作成。リンク先は www.amazon.co.jp/tryAB＝Amazonビジネスの登録ページ）",
       "url": "https://af.moshimo.com/af/c/click?a_id=5830031&p_id=170&pc_id=185&pl_id=4062&url=http%3A%2F%2Fwww.amazon.co.jp%2FtryAB",
       "active": true
+    },
+    {
+      "id": "rakuten-premiumselection-scansnap-ix1300",
+      "category": "saas",
+      "label": "楽天市場：Premium Selection 楽天市場店 PFU ScanSnap iX1300（FI-IX1300A）の商品ページ",
+      "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-23 作成。楽天市場 ドキュメントスキャナ デイリーランキング 1位、集計日 10/22）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fitem.rakuten.co.jp%2Fkitcut-ps%2F504416%2F",
+      "active": true
+    },
+    {
+      "id": "rakuten-xprice-scansnap-ix2500",
+      "category": "saas",
+      "label": "楽天市場：XPRICE楽天市場店 PFU ScanSnap iX2500（FI-IX2500W）の商品ページ",
+      "asp": "もしもアフィリエイト（楽天市場の商品購入、どこでもリンク、2026-10-23 作成。楽天市場 ドキュメントスキャナ デイリーランキング 2位、集計日 10/22）",
+      "url": "https://af.moshimo.com/af/c/click?a_id=5824049&p_id=54&pc_id=54&pl_id=616&url=https%3A%2F%2Fitem.rakuten.co.jp%2Fa-price%2F4939761315862%2F",
+      "active": true
     }
   ]
 }
