@@ -5,7 +5,7 @@ blueaegis.net の下で公開している物件紹介サイト。メディア（
 
 | サイト | 公開URL | 物件 |
 |---|---|---|
-| `hills-seikyu/` | https://blueaegis.net/hills-seikyu/ （＋ guide.html） | ヒルズ・セイキュウ（静岡市駿河区大谷833・1K・静岡大学の隣） |
+| `hills-seikyu/` | https://blueaegis.net/hills-seikyu/ （＋ guide.html） | ヒルズ・セイキュウ（静岡市駿河区大谷834-1（住居表示。地番は833番2ほか）・1K・静岡大学の隣） |
 | `sandy-coco/` | https://blueaegis.net/sandy-coco/ （＋ guide.html） | サンディココ（Sandy.CoCo／サンディハイツココ。長野市三輪3丁目5-10・本郷駅徒歩3分） |
 
 ## 編集の正本
