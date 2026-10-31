@@ -729,6 +729,7 @@ document.addEventListener('click',function(e){
   else if(/^mailto:/.test(h))ev='contact_mail';
   else if(/google\\.[^/]+\\/maps\\/dir/.test(h))ev='route_search';
   else if(/pitat\\.com|sanko-e\\.net/.test(h))ev='agency_site';
+  else if(/line\\.me/.test(h))ev='line_add';
   if(ev)gtag('event',ev,{property_site:'${site}',link_text:(a.textContent||'').trim().slice(0,60),link_url:h.slice(0,100)});
 });
 </script>`;

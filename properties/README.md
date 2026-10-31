@@ -19,7 +19,7 @@ blueaegis.net の下で公開している物件紹介サイト。メディア（
 - GA4：プロパティ「物件サイト（blueaegis.net）」 ID 558635029、測定ID `G-7ZQEW08JQ7`（`site.config.json` の `propertiesGaId`）。
   リアルタイム https://analytics.google.com/analytics/web/#/p558635029/realtime/overview
   ※ 同名アカウント「ishizuka.takuya1」が2つあり、通常の切替ではプロパティが開けない。上の URL で直接開く。
-- 反響イベント（build.js が差し込む）：`contact_tel` / `contact_mail` / `route_search` / `agency_site`（パラメータ `property_site`）
+- 反響イベント（build.js が差し込む）：`contact_tel` / `contact_mail` / `route_search` / `agency_site` / `line_add`（パラメータ `property_site`）
 - Search Console：ドメインプロパティ `sc-domain:blueaegis.net`
 - IndexNow キー：`/0abfc25fe725f456573fb6e6dd4ec403.txt`（消さない）。通知は GET `https://api.indexnow.org/indexnow?url=<URL>&key=0abfc25fe725f456573fb6e6dd4ec403`
 
@@ -35,6 +35,7 @@ blueaegis.net の下で公開している物件紹介サイト。メディア（
 - サンディココ1階のパーソナルトレーニングジム（ttTB）は「別途契約が必要」の注記を外さない。
 - 数値・施設・距離・日付を足すときは一次資料で確認する。確認できないことは書かない。
 - 管理会社：ヒルズ＝エイブルネットワーク静岡南店（株式会社山晃住宅）、サンディココ＝ピタットハウス長野駅前店（株式会社東邦不動産プラザ、n.ekimae@tohoplaza.co.jp／026-225-5555。2026-10-17 伊東様のご依頼で長野北店から変更）。連絡先を変えるときはユーザーに確認。
+- LINE公式アカウント：「Blue Aegis 賃貸」@573welnb（2026-11-01 開設、admin@blueaegis.co.jp のビジネスID、無料プラン）。空きのお知らせ用。友だち追加 https://line.me/R/ti/p/@573welnb
 - Instagram：@blueaegis_rent（2026-10-31 開設、admin@blueaegis.co.jp で登録。ログイン・投稿は依頼主）。各ページのフッターにリンク。
 - 名称の表記ゆれ（2026-10-30 ユーザー指示）：ヒルズは「ヒルズ・セイキュウ（ヒルズセイキュウ）」、サンディは正式名「サンディココ」（2026-10-31 ユーザー指示）を先頭に Sandy.CoCo／サンディハイツココを併記。棟は「北館」に統一（ポータル等の「西館」は北館のこと）、南館。英字 north/southern tower は併記のみ。JSON-LD の alternateName に表記ゆれを入れている。
 - ヒルズの旧名称（建物の旧サイン表記）は、サイト・構造化データ・SNSのどこにも載せない（2026-10-31 ユーザー指示）。
@@ -73,3 +74,4 @@ blueaegis.net の下で公開している物件紹介サイト。メディア（
 | 2026-10-31 | 両方 | Instagram @blueaegis_rent に初回投稿3本（左から ヒルズ／サンディココ／部屋探しガイド、4:5、位置情報は大学）。画像は依頼主PCの logo\Instagram\BlueAegisRent\投稿画像。固定（ピン留め）は有料機能のため使わない。北館307の投稿は成約したら削除 | GA4 の参照元 instagram.com、Instagram インサイト（リーチ・プロフィールのリンククリック） |
 | 2026-10-31 | ヒルズ | 「お部屋と賃料」の先頭に外観写真（images/exterior.jpg、依頼主撮影の最新外観、車のナンバーはぼかし）と説明を追加。JSON-LD に image。建物写真はこれ1枚のみ（旧外観の写真は今の見た目と違うため使わない） | エンゲージメント、空き待ち登録・問い合わせ |
 | 2026-10-31 | ヒルズ | 外観写真の下部（前面のスロープ）をカット（ユーザー指示） | — |
+| 2026-11-01 | 両方 | LINE公式アカウント（@573welnb）開設に合わせ、ヒルズの空き待ち欄とお問い合わせ欄、サンディのお問い合わせ欄に「LINEで空き情報を受け取る」ボタン、全ページのフッターにLINEリンク。クリックは GA4 イベント line_add | line_add の件数、LINE友だち数 |
