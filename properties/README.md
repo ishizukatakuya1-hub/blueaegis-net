@@ -19,7 +19,7 @@ blueaegis.net の下で公開している物件紹介サイト。メディア（
 - GA4：プロパティ「物件サイト（blueaegis.net）」 ID 558635029、測定ID `G-7ZQEW08JQ7`（`site.config.json` の `propertiesGaId`）。
   リアルタイム https://analytics.google.com/analytics/web/#/p558635029/realtime/overview
   ※ 同名アカウント「ishizuka.takuya1」が2つあり、通常の切替ではプロパティが開けない。上の URL で直接開く。
-- 反響イベント（build.js が差し込む）：`contact_tel` / `contact_mail` / `route_search` / `agency_site` / `line_add`（パラメータ `property_site`）
+- 反響イベント（build.js が差し込む）：`contact_tel` / `contact_mail` / `route_search` / `agency_site` / `line_add` / `instagram_follow`（パラメータ `property_site`）
 - Search Console：ドメインプロパティ `sc-domain:blueaegis.net`
 - IndexNow キー：`/0abfc25fe725f456573fb6e6dd4ec403.txt`（消さない）。通知は GET `https://api.indexnow.org/indexnow?url=<URL>&key=0abfc25fe725f456573fb6e6dd4ec403`
 
