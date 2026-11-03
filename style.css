@@ -579,7 +579,7 @@ section:has(.masthead){padding-top:clamp(34px,4.4vw,52px)}
    コーポレートサイトの「写真の帯」と同じ扱い：自サイトに同梱した写真に、紺を重ねて色調を揃える。
    ファイルは img/hero/（出どころは frontmatter の heroCredit）。フェードインの対象には入れない。 */
 .article .heroimg{position:relative; margin:0 0 44px}
-.article .heroimg img{display:block; width:100%; height:clamp(180px,30vw,300px); object-fit:cover; background:var(--navy)}
+.article .heroimg img{display:block; width:100%; aspect-ratio:1.618/1; height:auto; object-fit:cover; background:var(--navy)}
 .article .heroimg::before{
   content:""; position:absolute; left:0; right:0; top:0; height:clamp(180px,30vw,300px); pointer-events:none;
   background:linear-gradient(90deg,rgba(10,42,79,.62) 0%,rgba(10,42,79,.38) 45%,rgba(10,42,79,.12) 100%);
@@ -629,7 +629,7 @@ section:has(.masthead){padding-top:clamp(34px,4.4vw,52px)}
 
 /* ---- 一覧の写真 ---- */
 .postlist a.has-thumb{display:grid; grid-template-columns:clamp(96px,22vw,200px) 1fr; column-gap:clamp(14px,3vw,28px); align-items:start}
-.postlist a.has-thumb .thumb{grid-row:1 / span 3; width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; background:var(--navy); margin-top:4px; filter:saturate(.85)}
+.postlist a.has-thumb .thumb{grid-row:1 / span 3; width:100%; height:auto; aspect-ratio:1.618/1; object-fit:cover; background:var(--navy); margin-top:4px; filter:saturate(.85)}
 .postlist a.has-thumb > :not(.thumb){grid-column:2}
 /* パンくずは <nav> なので、ヘッダー用の nav の右寄せがかかる。本文と同じ左に揃える（コーポレートサイトと同じ直し） */
 .article .crumbs{justify-content:flex-start}
