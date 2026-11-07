@@ -73,7 +73,10 @@ function expand(html, catalog) {
       return `<span class="aff banner"><span class="prmark">PR</span><a href="${esc(p.url)}" rel="sponsored noopener" target="_blank">`
         + `<img src="${esc(p.image)}" width="${Number(p.width)}" height="${Number(p.height)}" alt="${esc(p.label)}" loading="lazy"></a>${pixel}</span>`;
     }
-    return `<span class="aff"><span class="prmark">PR</span><a href="${esc(p.url)}" rel="sponsored noopener" target="_blank">${esc(p.label)}</a></span>`;
+    /* notice：提携先の受付停止など、読者がリンク先で申し込めない事情を一時的に知らせる。
+       案件ごとに1か所で出し入れできるよう、記事本文ではなくカタログに置く */
+    const notice = p.notice ? `<span class="affnotice">${esc(p.notice)}</span>` : '';
+    return `<span class="aff">${notice}<span class="prmark">PR</span><a href="${esc(p.url)}" rel="sponsored noopener" target="_blank">${esc(p.label)}</a></span>`;
   });
 }
 

@@ -52,6 +52,7 @@
       "label": "お名前.com プレミアムドメインの公式ページ",
       "asp": "A8.net（お名前.com プレミアムドメイン、2026-09-24 提携承認）",
       "url": "https://px.a8.net/svt/ejp?a8mat=4BCIRS+CONHRM+50+3SZMKY",
+      "notice": "お名前.comは2026年10月24日から、サービスサイトでの新規申込み手続きをメンテナンス中です（終了日は未定。2026年11月7日に公式のお知らせで確認）。",
       "active": true
     },
     {
@@ -60,6 +61,15 @@
       "label": "お名前.comの公式サイト",
       "asp": "A8.net（お名前.com、2026-09-24。a8mat先頭が他と異なる点はユーザー確認済み）",
       "url": "https://px.a8.net/svt/ejp?a8mat=4BCIRR+F171O2+50+2HHVNM",
+      "notice": "お名前.comは2026年10月24日から、サービスサイトでの新規申込み手続きをメンテナンス中です（終了日は未定。2026年11月7日に公式のお知らせで確認）。",
+      "active": true
+    },
+    {
+      "id": "kanbei-sign",
+      "category": "saas",
+      "label": "KANBEI SIGNの公式案内（株式会社Wiz）",
+      "asp": "A8.net（KANBEI SIGN、広告主は株式会社Wiz、2026-11-01 提携。テキスト素材002「契約書周りの業務効率化に」、2026-11-07 作成）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BGAUY+BE7OKY+3SPO+BETIUA",
       "active": true
     },
     {
